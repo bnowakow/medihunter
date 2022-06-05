@@ -114,3 +114,6 @@ visits.db.dir
 
 #local runs
 /appointments.json
+
+#secrets
+secrets.sh
