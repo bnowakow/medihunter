@@ -19,8 +19,8 @@ while true; do
     # TODO filter out Telefonicznie
     #python3 medihunter.py find-appointment --specialization 112 --region 200 -n telegram
 
-    echo -n "Neurolog - "
-    python3 medihunter.py find-appointment --specialization 16 --region 200 --start-date 2022-08-28 --end-date 2022-09-21 -n telegram
+    #echo -n "Neurolog - "
+    #python3 medihunter.py find-appointment --specialization 16 --region 200 --start-date 2022-08-28 --end-date 2022-09-21 -n telegram
     
     sleep 60;
 done
