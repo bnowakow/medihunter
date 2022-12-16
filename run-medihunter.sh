@@ -2,7 +2,10 @@
 
 source secrets.sh
 
-./env/bin/activate
+# to create venv:
+# python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 pip install --editable .
 
 sleep_time=7200;
