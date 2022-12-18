@@ -12,21 +12,26 @@ sleep_time=7200;
 i=0;
 
 while true; do
-    date_from=$(date +"%Y-%m-%d");
-
+    date_now=$(date +"%Y-%m-%d");
     echo $date_from;
 
     #echo -n `date`" iteration=$i - Woźny ginekolog -prowadzenie -  ";
     # sometimes -i option doesn't return new finds, making restart app after an hour timeout
     #timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4800 --start-date 2022-11-27 --end-date 2022-12-07 -n telegram -i 1 &
 
-    if [ "$date_from" = "2023-01-13" ]; then
-        echo "date past checkpoint";
+    date_start="2023-01-13";
+    date_end="2023-01-18";
+    if [ $(date -d $date_now +%s) -gt $(date -d $date_end +%s) ]; then
+        echo "$date_now is past checkpoint of $date_end, exiting";
         exit # if that's only active search we can kill whole script
     else
-        # TODO write code that checks if date_from is >= 2023-01-13 then start moving --start-date to today
+        if [ $(date -d $date_now +%s) -gt $(date -d $date_start +%s) ]; then
+            echo "$date_now is past $date_start, moving date_start";
+            date_start=$date_now;
+        fi
+        echo "start=$date_start end=$date_end";
         echo -n "Woźny ginekolog  -zwykla - ";
-        timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search --start-date 2023-01-13 --end-date 2023-01-18 -n telegram -i 1 &
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search --start-date $date_start --end-date $date_end -n telegram -i 1 &
     fi
 
     #echo -n `date`" - Endokrynolog - ";
