@@ -5,8 +5,8 @@ source secrets.sh
 # to create venv:
 # python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
 pip install --editable .
+pip install -r requirements.txt
 
 sleep_time=7200;
 i=0;
@@ -52,11 +52,12 @@ while true; do
 #    echo -n "$date_from";
 #    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 132 --start-date $date_from --end-date 2022-12-31 --disable-phone-search -n telegram -i 1 &
 
-    echo -n "Ortopeda dzieciecy - "
-    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 83 --disable-phone-search -n telegram -i 1 &
+    #echo -n "Ortopeda dzieciecy - "
+    #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 83 --disable-phone-search -n telegram -i 1 &
 
-    echo -n "Ortopeda dzieci+dorosli - "
-    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
+    # nie mozna zarezerwowac z konta dziecka :/
+    #echo -n "Ortopeda dzieci+dorosli - "
+    #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
 
 
     sleep 60;
