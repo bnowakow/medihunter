@@ -23,7 +23,7 @@ while true; do
     date_end="2023-01-18";
     if [ $(date -d $date_now +%s) -gt $(date -d $date_end +%s) ]; then
         echo "$date_now is past checkpoint of $date_end, exiting";
-        exit # if that's only active search we can kill whole script
+        #exit # if that's only active search we can kill whole script
     else
         if [ $(date -d $date_now +%s) -gt $(date -d $date_start +%s) ]; then
             echo "$date_now is past $date_start, moving date_start";
@@ -52,7 +52,15 @@ while true; do
 #    echo -n "$date_from";
 #    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 132 --start-date $date_from --end-date 2022-12-31 --disable-phone-search -n telegram -i 1 &
 
+    echo -n "Ortopeda dzieciecy - "
+    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 83 --disable-phone-search -n telegram -i 1 &
+
+    echo -n "Ortopeda dzieci+dorosli - "
+    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
+
+
     sleep 60;
     sleep $sleep_time;
     let i=$i+1;
 done
+
