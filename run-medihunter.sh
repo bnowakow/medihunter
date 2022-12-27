@@ -18,6 +18,7 @@ while true; do
     echo $date_from;
 
     if [ $person = "kasia" ]; then
+        echo "Kasia";
         #echo -n `date`" iteration=$i - Woźny ginekolog -prowadzenie -  ";
         # sometimes -i option doesn't return new finds, making restart app after an hour timeout
         #timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4800 --start-date 2022-11-27 --end-date 2022-12-07 -n telegram -i 1 &
@@ -53,6 +54,7 @@ while true; do
     fi
 
     if [ $person = "kuba" ]; then
+        echo "Kuba";
         #date_from=$(date +"%Y-%m-%d" --date="2 day");
     #    echo "Pediatra dzieci zdrowe - ";
     #    echo -n "$date_from";
@@ -68,8 +70,8 @@ while true; do
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
 
         # for some reason when service is used on end date could be set :/
-        echo -n "USG bioder - "    
-        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 1 --service 535 --start-date $date_from  --disable-phone-search -n telegram -i 1 &    
+        #echo -n "USG bioder - "    
+        #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 1 --service 535 --start-date $date_from  --disable-phone-search -n telegram -i 1 &    
     fi    
 
     sleep 60;
