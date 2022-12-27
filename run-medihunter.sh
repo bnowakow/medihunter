@@ -68,8 +68,8 @@ while true; do
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
 
         # for some reason when service is used on end date could be set :/
-        echo -n "USG bioder - "    
-        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 1 --service 535 --start-date $date_from  --disable-phone-search -n telegram -i 1 &    
+        #echo -n "USG bioder - "    
+        #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 1 --service 535 --start-date $date_from  --disable-phone-search -n telegram -i 1 &    
     fi    
 
     sleep 60;
