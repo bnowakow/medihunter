@@ -23,20 +23,21 @@ while true; do
         # sometimes -i option doesn't return new finds, making restart app after an hour timeout
         #timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4800 --start-date 2022-11-27 --end-date 2022-12-07 -n telegram -i 1 &
 
-        date_start="2023-01-13";
-        date_end="2023-01-18";
-        if [ $(date -d $date_now +%s) -gt $(date -d $date_end +%s) ]; then
-            echo "$date_now is past checkpoint of $date_end, exiting";
-            #exit # if that's only active search we can kill whole script
-        else
-            if [ $(date -d $date_now +%s) -gt $(date -d $date_start +%s) ]; then
-                echo "$date_now is past $date_start, moving date_start";
-                date_start=$date_now;
-            fi
-            echo "start=$date_start end=$date_end";
-            echo -n "Woźny ginekolog  -zwykla - ";
-            timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search --start-date $date_start --end-date $date_end -n telegram -i 1 &
-        fi
+        #date_start="2023-01-13";
+        #date_end="2023-01-18";
+        #if [ $(date -d $date_now +%s) -gt $(date -d $date_end +%s) ]; then
+        #    echo "$date_now is past checkpoint of $date_end, exiting";
+        #    #exit # if that's only active search we can kill whole script
+        #else
+        #    if [ $(date -d $date_now +%s) -gt $(date -d $date_start +%s) ]; then
+        #        echo "$date_now is past $date_start, moving date_start";
+        #        date_start=$date_now;
+        #    fi
+        #    echo "start=$date_start end=$date_end";
+        #    echo -n "Woźny ginekolog  -zwykla - ";
+        #    timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search --start-date $date_start --end-date $date_end -n telegram -i 1 &
+        #fi
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search -n telegram -i 1 &
 
         #echo -n `date`" - Endokrynolog - ";
         #python3 medihunter.py find-appointment --region 200 --specialization 5 -n telegram
