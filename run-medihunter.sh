@@ -57,19 +57,23 @@ while true; do
     if [ $person = "kuba" ]; then
         echo "Kuba";
         #date_from=$(date +"%Y-%m-%d" --date="2 day");
-    #    echo "Pediatra dzieci zdrowe - ";
-    #    echo -n "$date_from";
-    #    timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 132 --start-date $date_from --end-date 2022-12-31 --disable-phone-search -n telegram -i 1 &
+        #date_to=$(date +"%Y-%m-%d" --date="5 day");
+        #echo date_to=$date_to;
+
+        #echo "Pediatra dzieci zdrowe - ";
+        #echo -n "$date_from";
+        #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 132 --start-date $date_from --end-date 2022-12-31 --disable-phone-search -n telegram -i 1 &
+
+        echo -n "Pediatra dzieci chore - ";        
+        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
+
+        echo -n "Pediatra dyżurny dzieci chore - ";
+        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 2 --specialization 7340 --start-date $date_from --disable-phone-search -n telegram -i 1 &
 
         # plus mozna dodac: clinicId=21950 (Grunwaldzka) doctorId=137862 (Bednarski Cezary) i date przed 16.01.2023
         #echo -n "Ortopeda dzieciecy - "
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 2 --specialization 83 --start-date $date_now --end-date 2023-12-30 --disable-phone-search -n telegram -i 1 &
     
-
-        # nie mozna zarezerwowac z konta dziecka :/
-        #echo -n "Ortopeda dzieci+dorosli - "
-        #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 202 --disable-phone-search -n telegram -i 1 &
-
         # for some reason when service is used on end date could be set :/
         #echo -n "USG bioder - "    
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 1 --service 535 --start-date $date_from  --disable-phone-search -n telegram -i 1 &    
