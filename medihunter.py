@@ -20,7 +20,7 @@ from medihunter_notifiers import pushover_notify, telegram_notify, xmpp_notify
 
 load_dotenv()
 now = datetime.now()
-now_formatted = now.strftime("%Y-%m-%dT02:00:00.000Z")
+now_formatted = now.strftime("%Y-%m-%d")
 
 
 def make_duplicate_checker() -> Callable[[Appointment], bool]:
@@ -46,11 +46,11 @@ duplicate_checker = make_duplicate_checker()
 
 def notify_external_device(message: str, notifier: str, **kwargs):
     # TODO: add more notification providers
+    title = kwargs.get("notification_title")
     if notifier == "pushover":
-        title = kwargs.get("notification_title")
         pushover_notify(message, title)
     elif notifier == "telegram":
-        telegram_notify(message)
+        telegram_notify(message, title)
     elif notifier == "xmpp":
         xmpp_notify(message)
 

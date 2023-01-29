@@ -22,6 +22,11 @@ Aktywujemy virtualenva (opcjonalnie choć zalecane)
 ```bash
 source /path/to/my/virtualenv/bin/activate
 ```
+lub w Windows cmd ze środowiskiem wirtualnym utworzonym biblioteką venv
+
+```
+SourceToVirtEnv\Scripts\activate.bat
+```
 
 Przechodzimy do katalogu ze źródłem i odpalamy
 
@@ -81,6 +86,12 @@ a może po prostu szukamy dowolnego internisty w przychodniach blisko nas w Atri
 
 ```bash
 medihunter find-appointment -s 9 -c 174 -c 49088
+```
+
+a co jeśli chcemy znaleźć wizytę u dowolnego ortopedy w Trójmieście w przeciągu następnych dwóch tygodni a nie za miesiąc? **bez daty rozpoczęcia nie działa**
+
+```bash
+medihunter find-appointment -s 163 -d 2021-12-19 -f 2022-12-31 -r 200 
 ```
 
 Lub można dodać bezpośrednio do Crontaba jak poniżej **wpis w cronie działa tylko z medicover_pushover.py**
@@ -153,7 +164,7 @@ opcja|domyślna wartość
 --pushover_user|brak, Pushover user Token
 --pushover_device|brak, None nazwa device w Pushover domyślnie pusta=wszystkie
 --pushover_msgtitle|brak - prefix dodawany przed tytułem powiadomienia
--t, --notification-title|brak, dostępna tylko w medihunter.py, wspierana tylko przez Pushover
+-t, --notification-title|brak, dostępna tylko w medihunter.py, wspierana tylko przez Pushover i Telegram
 
 ## Pushover w medihunter.py
 
@@ -197,6 +208,12 @@ lub
 # fish
 set -x NOTIFIERS_TELEGRAM_CHAT_ID avykwnqc8ohyk73mo1bsuggsm3r4qf
 set -x NOTIFIERS_TELEGRAM_TOKEN 740885363:AdFRNFTIFTc4hC1flAuXE-dyik_Udm6Ma3o
+```
+
+lub w Windows z venv
+```shell
+set NOTIFIERS_TELEGRAM_CHAT_ID=avykwnqc8ohyk73mo1bsuggsm3r4qf
+set NOTIFIERS_TELEGRAM_TOKEN=740885363:AdFRNFTIFTc4hC1flAuXE-dyik_Udm6Ma3o
 ```
 
 Teraz możemy wyszukać wizyty i otrzymać notyfikacje w Telegramie:
