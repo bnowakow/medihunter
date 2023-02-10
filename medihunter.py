@@ -14,9 +14,8 @@ from dotenv import load_dotenv
 from medicover_session import (
     Appointment,
     MedicoverSession,
-    load_available_search_params,
 )
-from medihunter_notifiers import pushover_notify, telegram_notify, xmpp_notify
+from medihunter_notifiers import pushbullet_notify, pushover_notify, telegram_notify, xmpp_notify
 
 load_dotenv()
 now = datetime.now()
@@ -47,6 +46,8 @@ duplicate_checker = make_duplicate_checker()
 def notify_external_device(message: str, notifier: str, **kwargs):
     # TODO: add more notification providers
     title = kwargs.get("notification_title")
+    if notifier == "pushbullet":
+        pushbullet_notify(message, title)
     if notifier == "pushover":
         pushover_notify(message, title)
     elif notifier == "telegram":
@@ -117,7 +118,7 @@ def validate_arguments(**kwargs) -> bool:
 @click.option("--service", "-e", default=-1)
 @click.option("--interval", "-i", default=0, show_default=True, help='Checking interval in minutes')
 @click.option("--days-ahead", "-j", default=1, show_default=True)
-@click.option("--enable-notifier", "-n", type=click.Choice(["pushover", "telegram", "xmpp"]))
+@click.option("--enable-notifier", "-n", type=click.Choice(["pushbullet", "pushover", "telegram", "xmpp"]))
 @click.option("--notification-title", "-t")
 @click.option("--user", prompt=True, envvar='MEDICOVER_USER')
 @click.password_option(confirmation_prompt=False, envvar='MEDICOVER_PASS')
@@ -209,17 +210,50 @@ def find_appointment(
         time.sleep(interval * 60)
 
 
-FIELD_NAMES = ["specialization", "region", "clinic", "doctor"]
-
-
 @click.command()
-@click.option(
-    "-f", "--field-name", type=click.Choice(FIELD_NAMES), default="specialization"
-)
-def show_params(field_name):
-    params = load_available_search_params(field_name)
+@click.option("--field-name", "-f", type=click.Choice(["region", "specialization", "clinic", "doctor"]), required=True)
+@click.option("--region", "-r", type=int)
+@click.option("--bookingtype", "-b", type=int, default=2, show_default=True)
+@click.option("--specialization", "-s", type=int)
+@click.option("--clinic", "-c", type=int)
+@click.option("--user", prompt=True, envvar='MEDICOVER_USER')
+@click.password_option(confirmation_prompt=False, envvar='MEDICOVER_PASS')
+def show_params(
+    field_name,
+    region,
+    bookingtype,
+    specialization,
+    clinic,
+    user,
+    password,
+):
+    get_params = None
+    if field_name == "region":
+        get_params = lambda: med_session.load_available_regions()
+    elif field_name == "specialization":
+        if not region:
+            raise click.UsageError(f"Option --region is mandatory when --fild-name={field_name}")
+        get_params = lambda: med_session.load_available_specializations(region, bookingtype)
+    elif field_name == "clinic":
+        if not region:
+            raise click.UsageError(f"Option --region is mandatory when --fild-name={field_name}")
+        if not specialization:
+            raise click.UsageError(f"Option --specialization is mandatory when --fild-name={field_name}")
+        get_params = lambda: med_session.load_available_clinics(region, bookingtype, specialization)
+    elif field_name == "doctor":
+        if not region:
+            raise click.UsageError(f"Option --region is mandatory when --fild-name={field_name}")
+        if not specialization:
+            raise click.UsageError(f"Option --specialization is mandatory when --fild-name={field_name}")
+        get_params = lambda: med_session.load_available_doctors(region, bookingtype, specialization, clinic)
+
+    med_session = login(user, password)
+    if not med_session:
+        return
+    params = get_params()
+
     for p in params:
-        text = p["text"]
+        text = p["text"].strip()
         id_ = p["id"]
         print(f" {text} (id={id_})")
 

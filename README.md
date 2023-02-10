@@ -50,16 +50,16 @@ Najprościej skopiować przykładowy plik `.env.example` z głównego katalogu j
 
 Gdy wyszukujemy wizyty musimy podać miasto, placówkę medyczną, specjalizację (jaki to ma być lekarz), identyfikator lekarza (możliwość wybrania konkretnego lekarza), datę wizyty (wizyta zacznie się nie wcześniej niż ta data). Każdy z tych parametrów (z wyjątkiem daty) ma przypisany nr id. Żeby go poznać używamy do tego komendy *show-params*.
 
-id specjalizacji
-
-```bash
-medihunter show-params -f specialization
-```
-
 id miast
 
 ```bash
 medihunter show-params -f region
+```
+
+id specjalizacji
+
+```bash
+medihunter show-params -f specialization -r 204
 ```
 
 ### find-appointment
@@ -165,6 +165,28 @@ opcja|domyślna wartość
 --pushover_device|brak, None nazwa device w Pushover domyślnie pusta=wszystkie
 --pushover_msgtitle|brak - prefix dodawany przed tytułem powiadomienia
 -t, --notification-title|brak, dostępna tylko w medihunter.py, wspierana tylko przez Pushover i Telegram
+
+## Pushbullet w medihunter.py
+
+Żeby działały powiadomienia pushbullet trzeba zrobić eksport (wartości ustawiamy swoje):
+
+```shell
+# bash
+export NOTIFIERS_PUSHBULLET_TOKEN=avykwnqc8ohyk73mo1bsuggsm3r4qf
+```
+
+lub
+
+```shell
+# fish
+set -x NOTIFIERS_PUSHBULLET_TOKEN avykwnqc8ohyk73mo1bsuggsm3r4qf
+```
+
+Teraz możemy wyszukać wizyty np. tak:
+
+```shell
+medihunter find-appointment -n pushbullet -r 204 -s 4798 --user 00000 --password psw1234 -i 1 -d 2019-05-15
+```
 
 ## Pushover w medihunter.py
 
