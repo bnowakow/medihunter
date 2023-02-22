@@ -37,7 +37,7 @@ while true; do
         #    echo -n "Woźny ginekolog  -zwykla - ";
         #    timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search --start-date $date_start --end-date $date_end -n telegram -i 1 &
         #fi
-        timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search -n telegram -i 1 &
+        #timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search -n telegram -i 1 &
 
         #echo -n `date`" - Endokrynolog - ";
         #python3 medihunter.py find-appointment --region 200 --specialization 5 -n telegram
@@ -51,7 +51,9 @@ while true; do
     
         #echo -n "Dermatolog Cichowska - ";
         #timeout $sleep_time python3 medihunter.py find-appointment --specialization 3 --doctor 417732 --region 200 --start-date 2022-11-03 --end-date 2022-11-12 --disable-phone-search -n telegram -i 1 &
-
+        
+        echo -n "Ortopeda Bednarski - ";
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 137862 --region 200 --specialization 163 --disable-phone-search -n telegram -i 1 &        
     fi
 
     if [ $person = "kuba" ]; then
