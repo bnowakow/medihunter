@@ -54,7 +54,10 @@ while true; do
         
         echo -n "Ortopeda Bednarski - ";
         timeout $sleep_time python3 medihunter.py find-appointment --doctor 137862 --region 200 --specialization 163 --disable-phone-search -n telegram -i 1 &        
-    fi
+        #echo -n "Pobranie krwi - OBC - ";
+        #timeout $sleep_time python3 medihunter.py find-appointment --specialization 52106 --region 200 --clinic 21950 --start-date 2023-02-28 --end-date 2023-03-01 --disable-phone-search -n telegram -i 1 &
+
+   fi
 
     if [ $person = "kuba" ]; then
         echo "Kuba";
