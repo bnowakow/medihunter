@@ -23,6 +23,9 @@ while true; do
         # sometimes -i option doesn't return new finds, making restart app after an hour timeout
         #timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4800 --start-date 2022-11-27 --end-date 2022-12-07 -n telegram -i 1 &
 
+        echo -n "Woźny ginekolog  -zwykla - ";
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 325232 --region 200 --specialization 4798 --disable-phone-search -n telegram -i 1 &
+
         #date_start="2023-01-13";
         #date_end="2023-01-18";
         #if [ $(date -d $date_now +%s) -gt $(date -d $date_end +%s) ]; then
@@ -52,8 +55,8 @@ while true; do
         #echo -n "Dermatolog Cichowska - ";
         #timeout $sleep_time python3 medihunter.py find-appointment --specialization 3 --doctor 417732 --region 200 --start-date 2022-11-03 --end-date 2022-11-12 --disable-phone-search -n telegram -i 1 &
         
-        echo -n "Ortopeda Bednarski - ";
-        timeout $sleep_time python3 medihunter.py find-appointment --doctor 137862 --region 200 --specialization 163 --disable-phone-search -n telegram -i 1 &        
+        #echo -n "Ortopeda Bednarski - ";
+        #timeout $sleep_time python3 medihunter.py find-appointment --doctor 137862 --region 200 --specialization 163 --disable-phone-search -n telegram -i 1 &        
         #echo -n "Pobranie krwi - OBC - ";
         #timeout $sleep_time python3 medihunter.py find-appointment --specialization 52106 --region 200 --clinic 21950 --start-date 2023-02-28 --end-date 2023-03-01 --disable-phone-search -n telegram -i 1 &
 
