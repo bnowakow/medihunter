@@ -50,7 +50,7 @@ while true; do
         #python3 medihunter.py find-appointment --specialization 112 --region 200 -n telegram
 
         echo -n "Neurolog - Grunwaldzka - "
-        timeout $sleep_time python3 medihunter.py find-appointment --specialization 16 --region 200 --clinic 21950 --disable-phone-search -n telegram &
+        timeout $sleep_time python3 medihunter.py find-appointment --specialization 16 --region 200 --clinic 21950 --disable-phone-search -n telegram -i 1 &
     
         #echo -n "Dermatolog Cichowska - ";
         #timeout $sleep_time python3 medihunter.py find-appointment --specialization 3 --doctor 417732 --region 200 --start-date 2022-11-03 --end-date 2022-11-12 --disable-phone-search -n telegram -i 1 &
