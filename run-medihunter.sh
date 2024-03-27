@@ -74,6 +74,9 @@ while true; do
         #echo -n "Pediatra dzieci chore - ";        
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
 
+        echo -n "Pediatra dzieci chore (OBC) - ";
+        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --clinic 21950 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
+
         #echo -n "Pediatra dzieci chore - Dziedzic Magdalena -";
         #timeout $sleep_time python3 medihunter.py find-appointment --doctor 469960 --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
 
