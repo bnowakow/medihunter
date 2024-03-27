@@ -45,8 +45,8 @@ while true; do
         #echo -n `date`" - Endokrynolog - ";
         #python3 medihunter.py find-appointment --region 200 --specialization 5 -n telegram
 
-        #echo -n "Higienistka - "
-        #timeout $sleep_time python3 medihunter.py find-appointment --specialization 112 --region 200 --disable-phone-search -n telegram -i 1 &
+        echo -n "Higienistka - "
+        timeout $sleep_time python3 medihunter.py find-appointment --specialization 112 --region 200 --disable-phone-search -n telegram -i 10 &
 
         #echo -n "Neurolog - Grunwaldzka - "
         #timeout $sleep_time python3 medihunter.py find-appointment --specialization 16 --region 200 --clinic 21950 --disable-phone-search -n telegram -i 1 &
