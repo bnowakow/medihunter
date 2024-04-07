@@ -75,13 +75,13 @@ while true; do
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
 
         echo -n "Pediatra dzieci chore (OBC) - ";
-        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --clinic 21950 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
+        timeout $sleep_time python3 medihunter.py find-appointment --region 200 --clinic 21950 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 10 &
 
-        #echo -n "Pediatra dzieci chore - Dziedzic Magdalena -";
-        #timeout $sleep_time python3 medihunter.py find-appointment --doctor 469960 --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
+        echo -n "Pediatra dzieci chore - Dziedzic Magdalena -";
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 469960 --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 10 &
 
-        #echo -n "Pediatra dzieci chore - Dorocińska Agnieszka  -";
-        #timeout $sleep_time python3 medihunter.py find-appointment --doctor 266684 --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 1 &
+        echo -n "Pediatra dzieci chore - Dorocińska Agnieszka  -";
+        timeout $sleep_time python3 medihunter.py find-appointment --doctor 266684 --region 200 --specialization 158 --start-date $date_from --disable-phone-search -n telegram -i 10 &
 
         #echo -n "Pediatra dyżurny dzieci chore - ";
         #timeout $sleep_time python3 medihunter.py find-appointment --region 200 --bookingtype 2 --specialization 7340 --start-date $date_from --disable-phone-search -n telegram -i 1 &
